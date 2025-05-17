@@ -2,12 +2,23 @@
 
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo, toggleTodo, deleteTodo } from "@/app/store/todoSlice";
+import {
+  addTodo,
+  toggleTodo,
+  deleteTodo,
+  setFilter,
+  Todo,
+} from "@/app/store/todoSlice";
 import styles from "./TodoList.module.css";
 
 export default function TodoList() {
   const [newTodo, setNewTodo] = useState("");
-  const todos = useSelector((state: any) => state.todos.todos);
+  const todos = useSelector(
+    (state: { todos: { todos: Todo[]; filter: string } }) => state.todos.todos
+  );
+  const filter = useSelector(
+    (state: { todos: { todos: Todo[]; filter: string } }) => state.todos.filter
+  );
   const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -17,6 +28,17 @@ export default function TodoList() {
       setNewTodo("");
     }
   };
+
+  const filteredTodos = todos.filter((todo: Todo) => {
+    switch (filter) {
+      case "active":
+        return !todo.completed;
+      case "completed":
+        return todo.completed;
+      default:
+        return true;
+    }
+  });
 
   return (
     <div className={styles.container}>
@@ -35,8 +57,29 @@ export default function TodoList() {
         </button>
       </form>
 
+      <div className={styles.filters}>
+        <button
+          onClick={() => dispatch(setFilter("all"))}
+          className={filter === "all" ? styles.activeFilter : ""}
+        >
+          Toutes
+        </button>
+        <button
+          onClick={() => dispatch(setFilter("active"))}
+          className={filter === "active" ? styles.activeFilter : ""}
+        >
+          Actives
+        </button>
+        <button
+          onClick={() => dispatch(setFilter("completed"))}
+          className={filter === "completed" ? styles.activeFilter : ""}
+        >
+          Complétées
+        </button>
+      </div>
+
       <ul className={styles.todoList}>
-        {todos.map((todo: any) => (
+        {filteredTodos.map((todo: Todo) => (
           <li key={todo.id} className={styles.todoItem}>
             <input
               type="checkbox"

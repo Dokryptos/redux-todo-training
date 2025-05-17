@@ -6,12 +6,16 @@ export interface Todo {
   completed: boolean;
 }
 
+type FilterType = "all" | "active" | "completed";
+
 interface TodoState {
   todos: Todo[];
+  filter: FilterType;
 }
 
 const initialState: TodoState = {
   todos: [],
+  filter: "all",
 };
 
 export const todoSlice = createSlice({
@@ -35,8 +39,11 @@ export const todoSlice = createSlice({
     deleteTodo: (state, action: PayloadAction<number>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
+    setFilter: (state, action: PayloadAction<FilterType>) => {
+      state.filter = action.payload;
+    },
   },
 });
 
-export const { addTodo, toggleTodo, deleteTodo } = todoSlice.actions;
+export const { addTodo, toggleTodo, deleteTodo, setFilter } = todoSlice.actions;
 export default todoSlice.reducer;

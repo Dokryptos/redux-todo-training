@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Counter } from "./components/counter/Counter";
+import TodoList from "./components/todo/TodoList";
 
 export default function IndexPage() {
-  return <Counter />;
+  return (
+    <main className="flex min-h-screen flex-col items-center p-24">
+      <TodoList />
+    </main>
+  );
 }
 
 export const metadata: Metadata = {

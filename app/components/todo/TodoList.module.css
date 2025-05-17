@@ -1,35 +1,34 @@
 .container {
+  width: 100%;
   max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .form {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .input {
   flex: 1;
-  padding: 0.5rem;
-  font-size: 1rem;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 .addButton {
-  padding: 0.5rem 1rem;
-  background-color: #4caf50;
+  padding: 8px 16px;
+  background-color: #0070f3;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
 }
 
 .addButton:hover {
-  background-color: #45a049;
+  background-color: #0051b3;
 }
 
 .todoList {
@@ -40,22 +39,17 @@
 .todoItem {
   display: flex;
   align-items: center;
-  padding: 1rem;
-  background-color: #f9f9f9;
-  margin-bottom: 0.5rem;
-  border-radius: 4px;
-  gap: 1rem;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  gap: 10px;
 }
 
 .checkbox {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
+  margin-right: 10px;
 }
 
 .todoText {
   flex: 1;
-  font-size: 1rem;
 }
 
 .completed {
@@ -64,7 +58,7 @@
 }
 
 .deleteButton {
-  padding: 0.25rem 0.5rem;
+  padding: 4px 8px;
   background-color: #ff4444;
   color: white;
   border: none;
@@ -74,4 +68,30 @@
 
 .deleteButton:hover {
   background-color: #cc0000;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.filters button {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filters button:hover {
+  background-color: #e0e0e0;
+}
+
+.activeFilter {
+  background-color: #0070f3 !important;
+  color: white;
+  border-color: #0070f3 !important;
 }
